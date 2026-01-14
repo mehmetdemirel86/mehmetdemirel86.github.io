@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mehmet Demirel - IT Know-How & Videolar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Mehmet Demirel - Network & Sistem Uzmanı. FortiGate, Windows Server, VMware, Ruckus, Zabbix ve diğer IT konularında yazı ve videolar.">
+
+    <style>
+        :root {
+            --bg-main: #020617;
+            --bg-body: #020617;
+            --bg-panel: #020617;
+            --bg-card: #020617;
+            --border-subtle: #1f2937;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --accent: #38bdf8;
+            --accent-soft: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            backdrop-filter: blur(14px);
+            background: rgba(2, 6, 23, 0.92);
+            border-bottom: 1px solid #111827;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-title-block {
+            text-align: center;
+        }
+
+        .header-name {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .header-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Hamburger (sadece mobilde görünecek) */
+        .hamburger {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid #1f2937;
+            background: #020617;
+            display: none; /* desktop'ta gizli */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            width: 16px;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 999px;
+            position: relative;
+        }
+
+        .hamburger-line::before,
+        .hamburger-line::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 2px;
+            background: #e5e7eb;
+            border-radius: 999px;
+        }
+
+        .hamburger-line::before {
+            top: -5px;
+        }
+
+        .hamburger-line::after {
+            top: 5px;
+        }
+
+        /* ANA LAYOUT */
+        .layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 16px 40px;
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr) 260px;
+            gap: 16px;
+        }
+
+        /* SOL MENU (desktop) */
+        .sidebar-left {
+            background: var(--bg-panel);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 14px 12px;
+            height: fit-content;
+            position: sticky;
+            top: 76px;
+        }
+
+        .menu-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .accordion-section {
+            border-radius: 10px;
+            margin-bottom: 4px;
+        }
+
+        .accordion-header {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 6px 6px 6px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #f9fafb;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 999px;
+        }
+
+        .accordion-header:hover {
+            background: #020617;
+        }
+
+        .accordion-label {
+            text-align: left;
+        }
+
+        .accordion-arrow {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-left: 6px;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.18s ease-out;
+        }
+
+        .accordion-section.open .accordion-content {
+            max-height: 300px; /* yeterli, içerik az */
+        }
+
+        .menu-link {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 3px 4px 3px 22px;
+            border-radius: 999px;
+            margin-bottom: 1px;
+        }
+
+        .menu-link:hover {
+            background: #020617;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .menu-link-small {
+            font-size: 12px;
+            padding-left: 28px;
+        }
+
+        /* ORTA İÇERİK */
+        .content {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 18px 18px 24px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-heading {
+            font-size: 18px;
+            margin: 0 0 6px;
+        }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 10px;
+        }
+
+        .paragraph {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #e5e7eb;
+            margin: 6px 0;
+        }
+
+        .paragraph-muted {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 6px 0;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 10px;
+        }
+
+        .chip {
+            font-size: 11px;
+            border-radius: 999px;
+            border: 1px solid #1f2937;
+            padding: 3px 9px;
+            background: #020617;
+            color: var(--text-muted);
+        }
+
+        .video-block {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .video-title {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .video-frame {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #111827;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 260px;
+            border: 0;
+        }
+
+        .note {
+            border-left: 3px solid var(--accent);
+            background: #020617;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        /* SAĞ PROFİL (desktop) */
+        .sidebar-right {
+            background: var(--bg-panel);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 14px 14px 16px;
+            height: fit-content;
+            position: sticky;
+            top: 76px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .profile-line {
+            font-size: 13px;
+            margin: 4px 0;
+        }
+
+        .profile-label {
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .profile-value {
+            font-size: 13px;
+        }
+
+        .profile-separator {
+            border-top: 1px solid #1f2937;
+            margin: 8px 0;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .profile-tag {
+            font-size: 11px;
+            border-radius: 999px;
+            padding: 3px 8px;
+            border: 1px solid #1f2937;
+            color: var(--text-muted);
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 18px auto 24px;
+            padding: 0 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* MOBİL DRAWER (sol menü + iletişim) */
+        .mobile-drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.7);
+            display: none;
+            z-index: 40;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 260px;
+            max-width: 80%;
+            background: #020617;
+            border-right: 1px solid #1f2937;
+            padding: 16px 14px;
+            transform: translateX(-100%);
+            transition: transform 0.22s ease-out;
+            z-index: 41;
+        }
+
+        .mobile-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .mobile-drawer-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .mobile-drawer-close {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid #1f2937;
+            background: #020617;
+            color: #e5e7eb;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .mobile-section-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .mobile-arrow {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+
+        .mobile-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.18s ease-out;
+        }
+
+        .mobile-accordion-section.open .mobile-accordion-content {
+            max-height: 260px;
+        }
+
+        .mobile-link {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 3px 0 3px 8px;
+        }
+
+        .mobile-link-small {
+            font-size: 12px;
+            padding-left: 18px;
+        }
+
+        .mobile-profile {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #1f2937;
+            font-size: 13px;
+        }
+
+        .mobile-profile-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .mobile-profile-value {
+            font-size: 13px;
+        }
+
+        .mobile-profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .mobile-profile-tag {
+            font-size: 11px;
+            border-radius: 999px;
+            padding: 3px 8px;
+            border: 1px solid #1f2937;
+            color: var(--text-muted);
+        }
+
+        .mobile-drawer-open .mobile-drawer-backdrop {
+            display: block;
+        }
+
+        .mobile-drawer-open .mobile-drawer {
+            transform: translateX(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 960px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .sidebar-left,
+            .sidebar-right {
+                display: none; /* mobilde gizle */
+            }
+
+            .hamburger {
+                display: flex; /* mobilde göster */
+            }
+
+            .video-frame iframe {
+                height: 210px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-name {
+                font-size: 18px;
+            }
+
+            .header-sub {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-inner">
+        <div class="header-title-block">
+            <div class="header-name">MEHMET DEMİREL</div>
+            <div class="header-sub">
+                Network & Sistem Uzmanı · FortiGate · Windows Server · VMware · Zabbix
+            </div>
+        </div>
+
+        <!-- Mobil hamburger butonu -->
+        <button class="hamburger" id="mobileMenuToggle" aria-label="Menüyü aç">
+            <div class="hamburger-line"></div>
+        </button>
+    </div>
+</header>
+
+<!-- MOBİL DRAWER (sol menü + sağ iletişim bir arada) -->
+<div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+        <div class="mobile-drawer-title">Menü & İletişim</div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Menüyü kapat">×</button>
+    </div>
+
+    <!-- Mobil ACCORDION MENÜ -->
+    <div class="mobile-accordion-section open">
+        <div class="mobile-section-title">
+            <span>Giriş</span>
+            <span class="mobile-arrow">▾</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#giris" class="mobile-link">Site Hakkında</a>
+            <a href="#felsefe" class="mobile-link mobile-link-small">Know-how yaklaşımı</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>Firewall / FortiGate</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#fortigate-temel" class="mobile-link">Temel kurulum</a>
+            <a href="#fortigate-ssl" class="mobile-link mobile-link-small">SSL-VPN</a>
+            <a href="#fortigate-log" class="mobile-link mobile-link-small">Log & izleme</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>Windows Server</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#windows-lab" class="mobile-link">Lab ortamı</a>
+            <a href="#windows-ad" class="mobile-link mobile-link-small">AD DS + DNS + DHCP</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>VMware & Sanallaştırma</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#vmware" class="mobile-link">Snapshot & backup</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>Wi-Fi & Ruckus</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#wifi" class="mobile-link">WLAN tasarımı</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>Monitoring</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#monitoring" class="mobile-link">Zabbix & alarm kültürü</a>
+        </div>
+    </div>
+
+    <div class="mobile-accordion-section">
+        <div class="mobile-section-title">
+            <span>Video İçerikler</span>
+            <span class="mobile-arrow">▸</span>
+        </div>
+        <div class="mobile-accordion-content">
+            <a href="#videolar" class="mobile-link">Tüm videolar</a>
+        </div>
+    </div>
+
+    <!-- Mobilde İLETİŞİM -->
+    <div class="mobile-profile">
+        <div class="mobile-section-title" style="cursor: default; margin-top: 12px;">
+            İletişim
+        </div>
+
+        <div style="margin-top: 4px;">
+            <div class="mobile-profile-label">Ad Soyad</div>
+            <div class="mobile-profile-value">Mehmet Demirel</div>
+        </div>
+
+        <div style="margin-top: 6px;">
+            <div class="mobile-profile-label">Telefon</div>
+            <div class="mobile-profile-value">+90 (5xx) xxx xx xx</div>
+        </div>
+
+        <div style="margin-top: 6px;">
+            <div class="mobile-profile-label">E-posta</div>
+            <div class="mobile-profile-value">me@example.com</div>
+        </div>
+
+        <div style="margin-top: 6px;">
+            <div class="mobile-profile-label">LinkedIn</div>
+            <div class="mobile-profile-value">
+                <a href="#" target="_blank">linkedin.com/in/...</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 6px;">
+            <div class="mobile-profile-label">GitHub</div>
+            <div class="mobile-profile-value">
+                <a href="https://github.com/mehmetdemirel86" target="_blank">github.com/mehmetdemirel86</a>
+            </div>
+        </div>
+
+        <div class="mobile-profile-tags">
+            <span class="mobile-profile-tag">FortiGate 70F</span>
+            <span class="mobile-profile-tag">Windows Server</span>
+            <span class="mobile-profile-tag">VMware</span>
+            <span class="mobile-profile-tag">Ruckus</span>
+            <span class="mobile-profile-tag">Zabbix</span>
+        </div>
+    </div>
+</div>
+
+<div class="layout">
+    <!-- SOL MENU (desktop, ACCORDION) -->
+    <aside class="sidebar-left">
+        <div class="menu-title">İçerik Haritası</div>
+
+        <div class="accordion-section open">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Giriş</span>
+                <span class="accordion-arrow">▾</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#giris" class="menu-link">Site Hakkında</a>
+                <a href="#felsefe" class="menu-link menu-link-small">Know-how yaklaşımı</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Firewall / FortiGate</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#fortigate-temel" class="menu-link">Temel kurulum</a>
+                <a href="#fortigate-ssl" class="menu-link menu-link-small">SSL-VPN</a>
+                <a href="#fortigate-log" class="menu-link menu-link-small">Log & izleme</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Windows Server</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#windows-lab" class="menu-link">Lab ortamı</a>
+                <a href="#windows-ad" class="menu-link menu-link-small">AD DS + DNS + DHCP</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">VMware & Sanallaştırma</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#vmware" class="menu-link">Snapshot & backup</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Wi-Fi & Ruckus</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#wifi" class="menu-link">WLAN tasarımı</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Monitoring</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#monitoring" class="menu-link">Zabbix & alarm kültürü</a>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <button class="accordion-header" type="button">
+                <span class="accordion-label">Video İçerikler</span>
+                <span class="accordion-arrow">▸</span>
+            </button>
+            <div class="accordion-content">
+                <a href="#videolar" class="menu-link">Tüm videolar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ORTA İÇERİK -->
+    <main class="content">
+        <!-- GİRİŞ -->
+        <section id="giris" class="section">
+            <h2 class="section-heading">Bu sitenin amacı ne?</h2>
+            <p class="section-sub">Komut ezberletmek değil, işin mantığını göstermek.</p>
+            <p class="paragraph">
+                Burada bulacağınız içerikler, sahada yaşanmış gerçek sorunlar ve gerçek topolojiler üzerinden
+                üretilmiş notlardır. Firewall, network, Windows Server, sanallaştırma ve monitoring konularında
+                “hangi menüye tıklanır?”dan önce, <strong>“neden öyle tasarlanır?”</strong> sorusuna odaklanıyorum.
+            </p>
+            <p class="paragraph">
+                Amaç; IT alanında çalışanların sadece yapılandırma yapan kişi olmaktan çıkıp, tasarım kararı verebilen,
+                risk ve etki analizi yapabilen, root cause bakışı güçlü profesyonellere dönüşmesi.
+            </p>
+            <div class="chip-row">
+                <span class="chip">Know-how odaklı</span>
+                <span class="chip">Gerçek senaryolar</span>
+                <span class="chip">Sistem yaklaşımı</span>
+            </div>
+        </section>
+
+        <section id="felsefe" class="section">
+            <h2 class="section-heading">Know-how yaklaşımı</h2>
+            <p class="paragraph">
+                Aynı komut, iki farklı elde iki farklı sonuç üretebilir. Farkı yaratan şey “komutu bilmek” değildir;
+                o komutun ağda, sunucuda ve iş süreçlerinde neyi değiştirdiğini kavramaktır. Bu nedenle her başlıkta,
+                olabildiğince arka plandaki mantığı ve olası yan etkileri ele almaya çalışıyorum.
+            </p>
+            <p class="paragraph-muted">
+                Her teknikte şu soruları sormayı hedefliyorum:
+            </p>
+            <ul class="paragraph">
+                <li>Bu yapılandırmanın amacı ne?</li>
+                <li>Hangi riski azaltıyor, hangilerini açık bırakıyor?</li>
+                <li>Bir şey bozulduğunda, nereden ve nasıl bakmak gerekir?</li>
+            </ul>
+        </section>
+
+        <!-- FORTIGATE -->
+        <section id="fortigate-temel" class="section">
+            <h2 class="section-heading">FortiGate Temel Kurulum</h2>
+            <p class="section-sub">İlk kurulum, arayüzler, internet çıkışı ve güvenli varsayılanlar.</p>
+            <p class="paragraph">
+                Yeni bir FortiGate cihazı devreye alırken asıl hedef, sadece “internete çıkmak” değildir. Yönetim
+                arayüzünü korumak, iç ağ segmentasyonunu doğru yapmak ve ileride eklenecek VPN, misafir ağı, loglama
+                gibi bileşenler için sağlam bir temel hazırlamak gerekir.
+            </p>
+
+            <div class="video-block">
+                <div class="video-title">Video · FortiGate ilk kurulum (örnek)</div>
+                <div class="video-frame">
+                    <!-- Kendi videonun YouTube ID'sini buraya koy -->
+                    <iframe src="https://www.youtube.com/embed/XXXXXXXXXXX"
+                            title="FortiGate Temel Kurulum Videosu"
+                            allowfullscreen></iframe>
+                </div>
+                <p class="paragraph-muted">
+                    Not: Buradaki <code>XXXXXXXXXXX</code> kısmını kendi YouTube video ID’inle değiştirmen yeterli.
+                </p>
+            </div>
+
+            <div class="note">
+                Bu bölüm ileride adım adım ekran görüntülü rehber ve PDF olarak genişletilecek
+                (interface planı, adresleme, admin policy, temel log ayarları vb.).
+            </div>
+        </section>
+
+        <section id="fortigate-ssl" class="section">
+            <h2 class="section-heading">FortiGate Üzerinde SSL-VPN</h2>
+            <p class="section-sub">Uzak kullanıcılar için mantıklı ve güvenli erişim modeli.</p>
+            <p class="paragraph">
+                SSL-VPN kurarken en sık yapılan hata, “herkese her yere” erişim açmaktır. Bu bölümde,
+                kullanıcı gruplarına göre segmentasyon, rol bazlı erişim ve log tarafında takip edilebilirlik
+                üzerine bir çerçeve kurulacak.
+            </p>
+        </section>
+
+        <section id="fortigate-log" class="section">
+            <h2 class="section-heading">FortiGate Log & İzleme</h2>
+            <p class="section-sub">Log yoksa, hikâye tek taraflıdır.</p>
+            <p class="paragraph">
+                Firewall tarafında alınan her karar, log’larla anlam kazanır. Bu bölümde log seviyeleri, uzak
+                log sunucusuna gönderim ve olay inceleme alışkanlıklarına değinilecektir.
+            </p>
+        </section>
+
+        <!-- WINDOWS -->
+        <section id="windows-lab" class="section">
+            <h2 class="section-heading">Windows Server Lab Ortamı</h2>
+            <p class="section-sub">AD DS, DNS, DHCP, GPO ve RDS’i bir arada test edebileceğin lab tasarımı.</p>
+            <p class="paragraph">
+                Lab; hata yapmanın serbest olduğu yerdir. Gerçek sistemde dokunmaktan çekindiğin ayarları, burada
+                defalarca bozup düzeltebilirsin. Bu bölümde örnek bir lab topolojisi ve adım adım kurulum notları
+                paylaşılacaktır.
+            </p>
+        </section>
+
+        <section id="windows-ad" class="section">
+            <h2 class="section-heading">AD DS + DNS + DHCP Senaryosu</h2>
+            <p class="section-sub">Klasik ama her yapıda kritik olan temel servisler.</p>
+            <p class="paragraph">
+                Active Directory, DNS ve DHCP’nin birlikte tasarımı, domain ortamında güvenilirlik ve yönetilebilirlik
+                için kritik önemdedir. Burada temel tasarım prensipleri ve dikkat edilmesi gereken noktalar ele alınacaktır.
+            </p>
+        </section>
+
+        <!-- VMWARE -->
+        <section id="vmware" class="section">
+            <h2 class="section-heading">VMware · Snapshot mı, Backup mı?</h2>
+            <p class="section-sub">İyi niyetle alınan snapshot’lar, yanlış senaryoda risk kaynağı olabilir.</p>
+            <p class="paragraph">
+                Snapshot; kısa süreli geri dönüş noktasıdır. Gerçek backup ise ayrı bir lokasyonda, tutarlı ve geri
+                dönüşü test edilmiş kopyadır. Bu bölümde snapshot ve backup arasındaki fark senaryolarla anlatılacaktır.
+            </p>
+        </section>
+
+        <!-- WIFI / RUCKUS -->
+        <section id="wifi" class="section">
+            <h2 class="section-heading">Wi-Fi & Ruckus · WLAN Tasarımı</h2>
+            <p class="section-sub">SSID sayısı, VLAN ayrımı, misafir ağı ve loglama.</p>
+            <p class="paragraph">
+                Kablosuz ağ tasarımı sadece “çekiyor mu?” sorusundan ibaret değildir. SSID/VLAN planı, client yoğunluğu,
+                roaming davranışı ve misafir ağının firewall kuralları bu tasarımın temel parçalarıdır.
+            </p>
+        </section>
+
+        <!-- MONITORING -->
+        <section id="monitoring" class="section">
+            <h2 class="section-heading">Monitoring · Zabbix & Alarm Kültürü</h2>
+            <p class="section-sub">Alarmlar gürültü için değil, aksiyon için vardır.</p>
+            <p class="paragraph">
+                İzleme sisteminde hedef “her şeyi izlemek” değil, önemli olanı anlamlı şekilde izlemektir.
+                Zabbix tarafında eşik tanımları, ACK süreçleri ve eskalasyon mantığını bu bakış açısıyla
+                ele alacağım.
+            </p>
+        </section>
+
+        <!-- VİDEOLAR GENEL -->
+        <section id="videolar" class="section">
+            <h2 class="section-heading">Video İçerikler</h2>
+            <p class="section-sub">Lab anlatımları, kurulum adımları ve know-how yorumları.</p>
+            <p class="paragraph">
+                Bu bölümde FortiGate, Windows Server, VMware, Ruckus ve monitoring konularında odaklı videolar yer alacak.
+                Her videonun amacı; bir konuyu baştan sona ezberletmekten çok, mantığını göstermek ve seni kendi lab’ını
+                kurmaya teşvik etmek.
+            </p>
+
+            <div class="video-block">
+                <div class="video-title">Örnek video alanı</div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/YYYYYYYYYYY"
+                            title="Örnek IT Know-How Videosu"
+                            allowfullscreen></iframe>
+                </div>
+                <p class="paragraph-muted">
+                    İkinci bir videoyu eklemek için bu bloğu kopyalayıp sadece
+                    <code>src</code> içindeki ID’yi değiştirmen yeterli.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- SAĞ PROFİL (desktop) -->
+    <aside class="sidebar-right">
+        <div class="profile-name">Mehmet Demirel</div>
+        <div class="profile-title">Network & Sistem Uzmanı</div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">Title</span><br>
+            <span class="profile-value">Firewall · Network · Windows Server · VMware</span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">Telefon</span><br>
+            <span class="profile-value">+90 (5xx) xxx xx xx</span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">E-posta</span><br>
+            <span class="profile-value">me@example.com</span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">Lokasyon</span><br>
+            <span class="profile-value">Türkiye</span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">LinkedIn</span><br>
+            <span class="profile-value">
+                <a href="#" target="_blank">linkedin.com/in/...</a>
+            </span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">GitHub</span><br>
+            <span class="profile-value">
+                <a href="https://github.com/mehmetdemirel86" target="_blank">github.com/mehmetdemirel86</a>
+            </span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-tags">
+            <span class="profile-tag">FortiGate 70F</span>
+            <span class="profile-tag">Windows Server</span>
+            <span class="profile-tag">VMware</span>
+            <span class="profile-tag">Ruckus</span>
+            <span class="profile-tag">Zabbix</span>
+        </div>
+    </aside>
+</div>
+
+<footer>
+    © <span id="yil"></span> Mehmet Demirel – IT Know-How, Yazılar & Videolar
+</footer>
+
+<script>
+    document.getElementById("yil").textContent = new Date().getFullYear();
+
+    const body = document.body;
+    const toggle = document.getElementById('mobileMenuToggle');
+    const drawer = document.getElementById('mobileDrawer');
+    const backdrop = document.getElementById('mobileDrawerBackdrop');
+    const closeBtn = document.getElementById('mobileDrawerClose');
+
+    function openDrawer() {
+        body.classList.add('mobile-drawer-open');
+    }
+
+    function closeDrawer() {
+        body.classList.remove('mobile-drawer-open');
+    }
+
+    toggle.addEventListener('click', openDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+
+    // Drawer içindeki linklere tıklanınca kapansın
+    drawer.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            closeDrawer();
+        });
+    });
+
+    // SOL (desktop) accordion
+    document.querySelectorAll('.accordion-header').forEach(function (header) {
+        header.addEventListener('click', function () {
+            const section = header.closest('.accordion-section');
+            const isOpen = section.classList.contains('open');
+
+            // Tek açık kalsın istiyorsak diğerlerini kapatalım
+            document.querySelectorAll('.accordion-section').forEach(function (sec) {
+                sec.classList.remove('open');
+                const arrow = sec.querySelector('.accordion-arrow');
+                if (arrow) arrow.textContent = '▸';
+            });
+
+            if (!isOpen) {
+                section.classList.add('open');
+                const arrow = section.querySelector('.accordion-arrow');
+                if (arrow) arrow.textContent = '▾';
+            }
+        });
+    });
+
+    // MOBİL accordion
+    document.querySelectorAll('.mobile-accordion-section').forEach(function (section) {
+        const title = section.querySelector('.mobile-section-title');
+        const arrow = section.querySelector('.mobile-arrow');
+
+        title.addEventListener('click', function () {
+            const isOpen = section.classList.contains('open');
+
+            // Diğerlerini kapat
+            document.querySelectorAll('.mobile-accordion-section').forEach(function (sec) {
+                sec.classList.remove('open');
+                const arr = sec.querySelector('.mobile-arrow');
+                if (arr) arr.textContent = '▸';
+            });
+
+            if (!isOpen) {
+                section.classList.add('open');
+                if (arrow) arrow.textContent = '▾';
+            }
+        });
+    });
+</script>
+</body>
+</html>
