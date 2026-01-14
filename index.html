@@ -2,29 +2,48 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Mehmet Demirel - CV & Portfolio</title>
+    <title>Mehmet Demirel - CV & Teknik Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Mehmet Demirel - Network & Sistem Uzmanı. FortiGate, Windows Server, VMware, Ruckus, Zabbix ve kurumsal IT altyapıları hakkında dokümanlar ve projeler.">
 
     <style>
+        :root {
+            --bg: #f3f4f6;
+            --bg-dark: #111827;
+            --card-bg: #ffffff;
+            --text: #111827;
+            --muted: #4b5563;
+            --border: #e5e7eb;
+            --accent: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f5f5f5;
-            color: #222;
+            background: var(--bg);
+            color: var(--text);
         }
 
         header {
-            background: #111827;
+            background: var(--bg-dark);
             color: #f9fafb;
-            padding: 16px 24px;
             position: sticky;
             top: 0;
+            z-index: 10;
         }
 
-        .container {
-            max-width: 900px;
+        nav {
+            max-width: 980px;
             margin: 0 auto;
-            padding: 24px 16px 40px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .nav-title {
@@ -32,67 +51,111 @@
             font-weight: 700;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        nav a {
+        .nav-links a {
             color: #e5e7eb;
-            margin-left: 16px;
             text-decoration: none;
             font-size: 14px;
+            margin-left: 16px;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             text-decoration: underline;
         }
 
+        main {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
         .hero {
-            margin-top: 32px;
-            margin-bottom: 32px;
+            margin-top: 24px;
+            margin-bottom: 24px;
         }
 
-        .hero h1 {
+        .hero-title {
             font-size: 32px;
-            margin-bottom: 8px;
+            margin: 0 0 8px;
         }
 
-        .hero p {
-            margin: 4px 0;
-        }
-
-        .tagline {
-            color: #4b5563;
+        .hero-tagline {
             font-size: 15px;
+            color: var(--muted);
+            margin: 0 0 4px;
         }
 
-        h2 {
+        .hero-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 4px 0 0;
+        }
+
+        h2.section-title {
             margin-top: 32px;
             margin-bottom: 8px;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 4px;
             font-size: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-top: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
         }
 
         ul {
             padding-left: 20px;
+            margin: 8px 0;
         }
 
-        .card {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 16px 18px;
+        li {
+            margin-bottom: 4px;
+        }
+
+        .btn-row {
             margin-top: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .small {
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #ffffff;
             font-size: 14px;
-            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #e5e7eb;
+            font-size: 12px;
+            color: #374151;
         }
 
         footer {
@@ -102,14 +165,18 @@
             margin-top: 40px;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 720px) {
             nav {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 4px;
             }
-            nav a {
+            .nav-links a {
                 margin-left: 0;
                 margin-right: 12px;
+            }
+            .hero-title {
+                font-size: 26px;
             }
         }
     </style>
@@ -118,81 +185,104 @@
 <header>
     <nav>
         <div class="nav-title">Mehmet Demirel</div>
-        <div>
+        <div class="nav-links">
             <a href="#hakkimda">Hakkımda</a>
-           <a href="Cv_MehmetDemirel_2026.docx" target="_blank">CV'yi görüntüle (PDF)</a>
-
-            <a href="#projeler">Projeler</a>
+            <a href="#cv">CV</a>
+            <a href="#projeler">Alanlar</a>
             <a href="#dokumanlar">Dökümanlar</a>
             <a href="#iletisim">İletişim</a>
         </div>
     </nav>
 </header>
 
-<main class="container">
-    <section class="hero" id="hakkimda">
-        <h1>Merhaba, ben Mehmet Demirel</h1>
-        <p class="tagline">
+<main>
+    <!-- HAKKIMDA / HERO -->
+    <section id="hakkimda" class="hero">
+        <h1 class="hero-title">Merhaba, ben Mehmet Demirel</h1>
+        <p class="hero-tagline">
             Network & Sistem Uzmanı · Firewall (FortiGate) · Windows Server · VMware · Zabbix · Ruckus
         </p>
-        <p class="small">
+        <p class="hero-sub">
             Bu site; CV, teknik projelerim ve “nasıl yapılır” dökümanlarımı paylaşmak için hazırlanmıştır.
         </p>
     </section>
 
+    <!-- CV -->
     <section id="cv">
-        <h2>CV / Özet</h2>
+        <h2 class="section-title">CV / Profesyonel Özet</h2>
         <div class="card">
             <p>
                 Çok lokasyonlu otel ve kurumsal yapılarda network, güvenlik duvarı, Wi-Fi ve
                 Windows Server altyapılarının kurulumu, işletimi ve izlenmesi alanlarında çalışıyorum.
+                Firewall (FortiGate), VLAN tasarımı, VPN, uzak erişim ve izleme sistemleri (Zabbix) üzerine
+                yoğunlaşmış durumdayım.
             </p>
-            <p class="small">
-               
-Detaylı CV dosyanı buraya ekleyeceğiz (PDF linki).
-
+            <p class="muted">
+                Detaylı özgeçmişime PDF olarak buradan ulaşabilirsiniz:
             </p>
+            <div class="btn-row">
+                <a href="cv.pdf" target="_blank" class="btn">CV'yi görüntüle (PDF)</a>
+                <a href="cv.pdf" target="_blank" class="btn btn-outline">CV'yi indir</a>
+            </div>
         </div>
     </section>
 
+    <!-- ÖNE ÇIKAN ALANLAR -->
     <section id="projeler">
-        <h2>Öne Çıkan Alanlar</h2>
+        <h2 class="section-title">Öne Çıkan Teknik Alanlar</h2>
         <div class="card">
             <ul>
-                <li>FortiGate 70F: VLAN, VPN, SSL-VPN, IPsec, policy ve log analizi</li>
-                <li>Windows Server 2019/2025: AD DS, DNS, DHCP, GPO, RDS lab çalışmaları</li>
-                <li>VMware: sanallaştırma, kaynak yönetimi, temel backup senaryoları</li>
-                <li>Wi-Fi: Ruckus Virtual SmartZone, AP yönetimi, misafir ağı, VLAN tasarımı</li>
-                <li>Monitoring: Zabbix ile sistem ve ağ izleme, alarm & ACK süreçleri</li>
+                <li>FortiGate 70F: VLAN, NAT, policy, SSL-VPN, IPsec, kullanıcı bazlı erişim kuralları</li>
+                <li>Windows Server 2019/2025: AD DS, DNS, DHCP, GPO, RDS, dosya sunucusu senaryoları</li>
+                <li>VMware: sanallaştırma, kaynak yönetimi, snapshot & temel backup senaryoları</li>
+                <li>Wi-Fi: Ruckus Virtual SmartZone, AP politikaları, misafir ağı, VLAN segmentasyonu</li>
+                <li>Monitoring: Zabbix ile sunucu, network ve servis izleme; alarm ve ACK süreçleri</li>
             </ul>
+            <div class="tag-list">
+                <span class="tag">FortiGate 70F</span>
+                <span class="tag">SSL-VPN</span>
+                <span class="tag">Windows Server 2025</span>
+                <span class="tag">Active Directory</span>
+                <span class="tag">VMware</span>
+                <span class="tag">Ruckus SmartZone</span>
+                <span class="tag">Zabbix Monitoring</span>
+            </div>
         </div>
     </section>
 
+    <!-- DOKÜMAN / BLOG LİSTESİ -->
     <section id="dokumanlar">
-        <h2>Teknik Dökümanlar (Yakında)</h2>
+        <h2 class="section-title">Teknik Dökümanlar</h2>
         <div class="card">
-            <ul>
-                <li>FortiGate Kurulum Rehberi (Temel)</li>
-                <li>FortiGate Üzerinde SSL-VPN ile Uzaktan Erişim</li>
-                <li>Windows Server 2025 Lab Ortamı Kurulumu</li>
-                <li>Ruckus SmartZone ile Kablosuz Ağ Yönetimi</li>
-                <li>VMware Üzerinde Full Backup Senaryosu</li>
-            </ul>
-            <p class="small">
-                Her biri için ayrı sayfa ve PDF linkleri ekleyeceğiz.
+            <p class="muted">
+                Aşağıdaki başlıklar için ayrı sayfalar ve PDF/ekrân görüntülü dökümanlar eklenecektir.
+                Şu an taslak liste şeklindedir.
             </p>
+            <ul>
+                <li><strong>FortiGate Temel Kurulum</strong> – İlk kurulum, arayüzler, internet çıkışı</li>
+                <li><strong>FortiGate Üzerinde SSL-VPN</strong> – Uzak kullanıcılar için güvenli erişim</li>
+                <li><strong>Windows Server 2025 Lab</strong> – AD DS, DNS, DHCP, GPO senaryosu</li>
+                <li><strong>Ruckus SmartZone ile WLAN Yönetimi</strong> – SSID, VLAN, misafir ağ yapısı</li>
+                <li><strong>VMware Üzerinde Full Backup Yaklaşımı</strong> – Lab odaklı örnek senaryo</li>
+            </ul>
         </div>
     </section>
 
+    <!-- İLETİŞİM -->
     <section id="iletisim">
-        <h2>İletişim</h2>
+        <h2 class="section-title">İletişim</h2>
         <div class="card">
-            <p class="small">
-                LinkedIn, e-posta ve diğer bilgileri buraya ekleyebiliriz. Şimdilik taslak:
+            <p class="muted">
+                İş fırsatları, projeler veya teknik konularla ilgili iletişim için:
             </p>
             <p>
-                E-posta: <strong>buraya e-posta gelecek</strong><br>
-                LinkedIn: <strong>profil linkin buraya gelecek</strong>
+                E-posta:
+                <strong>buraya e-posta adresin gelecek</strong><br>
+                LinkedIn:
+                <strong>buraya LinkedIn profil linkin gelecek</strong>
+            </p>
+            <p class="muted">
+                (Bu alanları hazır olduğunda gerçek bilgilerle güncelleyebiliriz.)
             </p>
         </div>
     </section>
