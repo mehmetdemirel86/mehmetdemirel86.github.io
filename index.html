@@ -2,21 +2,23 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Mehmet Demirel - Know-How, CV & Teknik Portfolio</title>
+    <title>Mehmet Demirel - IT Know-How & Videolar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-          content="Mehmet Demirel - Network & Sistem Uzmanı. Bu site, IT alanında gerçek know-how (işin mantığı) ve teknik doküman paylaşmak için hazırlanmıştır.">
+          content="Mehmet Demirel - Network & Sistem Uzmanı. FortiGate, Windows Server, VMware, Ruckus, Zabbix ve diğer IT konularında yazı ve videolar.">
 
     <style>
         :root {
-            --bg: #f3f4f6;
-            --bg-dark: #020617;
-            --card-bg: #ffffff;
-            --text: #020617;
-            --muted: #4b5563;
-            --border: #e5e7eb;
-            --accent: #2563eb;
-            --accent-soft: #dbeafe;
+            --bg: #0b1120;
+            --bg-content: #020617;
+            --bg-elevated: #020617;
+            --bg-card: #020617;
+            --border-subtle: #1f2937;
+            --text-main: #e5e7eb;
+            --text-muted: #9ca3af;
+            --accent: #38bdf8;
+            --accent-soft: #0f172a;
+            --menu-bg: #020617;
         }
 
         * {
@@ -26,313 +28,532 @@
         body {
             margin: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         header {
-            background: var(--bg-dark);
-            color: #e5e7eb;
+            border-bottom: 1px solid #111827;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 20;
         }
 
-        nav {
-            max-width: 980px;
+        .topbar {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 12px 16px;
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .nav-title {
-            font-size: 18px;
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 19px;
             font-weight: 700;
         }
 
-        .nav-sub {
+        .logo-sub {
             font-size: 11px;
-            color: #9ca3af;
+            color: var(--text-muted);
         }
 
-        .nav-links a {
-            color: #e5e7eb;
-            text-decoration: none;
-            font-size: 14px;
-            margin-left: 16px;
+        .top-links {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        .nav-links a:hover {
-            text-decoration: underline;
+        .top-links span {
+            margin-left: 12px;
         }
 
-        main {
-            max-width: 980px;
+        .layout {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 24px 16px 40px;
+            padding: 18px 16px 40px;
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr) 260px;
+            gap: 16px;
         }
 
-        .hero {
-            margin-top: 24px;
-            margin-bottom: 24px;
+        /* SOL MENU */
+        .sidebar-left {
+            background: var(--menu-bg);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 14px 12px;
+            height: fit-content;
+            position: sticky;
+            top: 66px;
         }
 
-        .hero-title {
-            font-size: 32px;
-            margin: 0 0 8px;
-        }
-
-        .hero-tagline {
-            font-size: 15px;
-            color: var(--muted);
-            margin: 0 0 4px;
-        }
-
-        .hero-sub {
-            font-size: 14px;
-            color: var(--muted);
-            margin: 6px 0 0;
-        }
-
-        h2.section-title {
-            margin-top: 32px;
+        .menu-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
             margin-bottom: 8px;
-            font-size: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 4px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 16px 18px;
-            margin-top: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-
-        .muted {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .highlight {
-            border-left: 4px solid var(--accent);
-            background: var(--accent-soft);
-        }
-
-        .highlight-title {
-            font-size: 15px;
+        .menu-section-title {
+            font-size: 13px;
             font-weight: 600;
-            margin: 0 0 4px;
-        }
-
-        .highlight-body {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 8px 0;
-        }
-
-        li {
+            margin-top: 10px;
             margin-bottom: 4px;
+            color: #f9fafb;
         }
 
-        .btn-row {
-            margin-top: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 14px;
+        .menu-link {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 3px 4px 3px 10px;
             border-radius: 999px;
-            border: 1px solid var(--accent);
-            background: var(--accent);
-            color: #ffffff;
-            font-size: 14px;
+            margin-bottom: 1px;
+        }
+
+        .menu-link:hover {
+            background: #020617;
+            color: var(--text-main);
             text-decoration: none;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
+        .menu-link-small {
+            font-size: 12px;
+            padding-left: 18px;
         }
 
-        .tag-list {
+        /* ORTA İÇERİK */
+        .content {
+            background: linear-gradient(135deg, #020617, #020617);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 18px 18px 24px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-heading {
+            font-size: 18px;
+            margin: 0 0 6px;
+        }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 10px;
+        }
+
+        .chip-row {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            margin: 8px 0 10px;
+        }
+
+        .chip {
+            font-size: 11px;
+            border-radius: 999px;
+            border: 1px solid #1f2937;
+            padding: 3px 9px;
+            background: #020617;
+            color: var(--text-muted);
+        }
+
+        .paragraph {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #e5e7eb;
+            margin: 6px 0;
+        }
+
+        .paragraph-muted {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .video-block {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .video-title {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .video-frame {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #111827;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+        }
+
+        .note {
+            border-left: 3px solid var(--accent);
+            background: #020617;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-radius: 8px;
             margin-top: 8px;
         }
 
-        .tag {
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: #e5e7eb;
+        /* SAĞ KART (KİŞİSEL BİLGİLER) */
+        .sidebar-right {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            padding: 14px 14px 16px;
+            height: fit-content;
+            position: sticky;
+            top: 66px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .profile-line {
+            font-size: 13px;
+            margin: 4px 0;
+        }
+
+        .profile-label {
+            color: var(--text-muted);
             font-size: 12px;
-            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .profile-value {
+            font-size: 13px;
+        }
+
+        .profile-separator {
+            border-top: 1px solid #1f2937;
+            margin: 8px 0;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .profile-tag {
+            font-size: 11px;
+            border-radius: 999px;
+            padding: 3px 8px;
+            border: 1px solid #1f2937;
+            color: var(--text-muted);
         }
 
         footer {
+            max-width: 1200px;
+            margin: 18px auto 24px;
+            padding: 0 16px;
+            font-size: 11px;
+            color: var(--text-muted);
             text-align: center;
-            font-size: 12px;
-            color: #6b7280;
-            margin-top: 40px;
         }
 
-        @media (max-width: 720px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
+        @media (max-width: 960px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
             }
-            .nav-links a {
-                margin-left: 0;
-                margin-right: 12px;
-            }
-            .hero-title {
-                font-size: 26px;
+
+            .sidebar-left,
+            .sidebar-right {
+                position: static;
             }
         }
     </style>
 </head>
 <body>
 <header>
-    <nav>
-        <div>
-            <div class="nav-title">Mehmet Demirel</div>
-            <div class="nav-sub">Network & Sistem Uzmanı · Firewall · Windows Server · VMware</div>
+    <div class="topbar">
+        <div class="logo-area">
+            <span class="logo-title">MD · IT Know-How</span>
+            <span class="logo-sub">Firewall · Network · Windows Server · VMware · Monitoring</span>
         </div>
-        <div class="nav-links">
-            <a href="#hakkimda">Hakkımda</a>
-            <a href="#knowhow">Know-How</a>
-            <a href="#cv">CV</a>
-            <a href="#dokumanlar">Dökümanlar</a>
-            <a href="#iletisim">İletişim</a>
+        <div class="top-links">
+            <span>TR / EN</span>
         </div>
-    </nav>
+    </div>
 </header>
 
-<main>
-    <!-- HAKKIMDA / HERO -->
-    <section id="hakkimda" class="hero">
-        <h1 class="hero-title">Merhaba, ben Mehmet Demirel</h1>
-        <p class="hero-tagline">
-            Network & Sistem Uzmanı – FortiGate, Windows Server, VMware, Zabbix, Ruckus
-        </p>
-        <p class="hero-sub">
-            Bu site; IT alanında <strong>know-how</strong> paylaşmak için kurulmuş kişisel bir bilgi deposudur.
-            Burada göreceğiniz her şey gerçek sorunlar, gerçek topolojiler ve gerçek çözümler üzerinden anlatılır.
-        </p>
-    </section>
+<div class="layout">
+    <!-- SOL MENU -->
+    <aside class="sidebar-left">
+        <div class="menu-title">İçerik Haritası</div>
 
-    <!-- KNOW-HOW BÖLÜMÜ -->
-    <section id="knowhow">
-        <h2 class="section-title">Bu Sitenin Amacı: Know-How</h2>
-        <div class="card highlight">
-            <p class="highlight-title">Know-how nedir ve neden bu kadar önemli?</p>
-            <p class="highlight-body">
-                IT’de komut ezberlemek kolaydır; zor olan, <strong>işin mantığını kavramaktır</strong>.
-                Yani “neden bu portu açıyorum, bu kural hangi riski çözüyor, bu tasarım değiştiğinde
-                bütün sistem nasıl etkilenir?” sorularına cevap verebilmektir.
-            </p>
-        </div>
-        <div class="card">
-            <p class="muted">
-                Bu sitede amaç:
-            </p>
-            <ul>
-                <li>Sadece “nasıl yapılır” değil, <strong>“neden böyle yapılır”</strong> sorusuna da cevap vermek,</li>
-                <li>Firewall, network, server ve monitoring konularında <strong>gerçek senaryo</strong> üzerinden ilerlemek,</li>
-                <li>Komutların arkasındaki tasarım kararını ve <strong>root cause / etki analizi</strong> bakış açısını göstermek,</li>
-                <li>IT çalışanlarının “butona basan kişi” olmaktan çıkıp, <strongs>işin mutfağını bilen</strong> profesyoneller olması.</li>
-            </ul>
-            <p class="muted">
-                Eğer bu sitedeki içeriklerden bir cümle bile seni “daha sistemli düşünmeye” zorluyorsa,
-                hedefine ulaşmış demektir.
-            </p>
-        </div>
-    </section>
+        <div class="menu-section-title">Giriş</div>
+        <a href="#giris" class="menu-link">Site Hakkında</a>
+        <a href="#felsefe" class="menu-link menu-link-small">Know-how yaklaşımı</a>
 
-    <!-- CV -->
-    <section id="cv">
-        <h2 class="section-title">CV / Profesyonel Özet</h2>
-        <div class="card">
-            <p>
-                Çok lokasyonlu otel ve kurumsal yapılarda network, güvenlik duvarı, Wi-Fi ve Windows Server
-                altyapılarının kurulumu, işletimi ve izlenmesi alanlarında çalışıyorum. FortiGate ile
-                erişim politikaları, uzak kullanıcı VPN senaryoları; VMware ile sanallaştırma; Zabbix ile
-                izleme ve alarm yönetimi üzerinde yoğun deneyime sahibim.
+        <div class="menu-section-title">Firewall / FortiGate</div>
+        <a href="#fortigate-temel" class="menu-link">Temel kurulum</a>
+        <a href="#fortigate-ssl" class="menu-link menu-link-small">SSL-VPN</a>
+        <a href="#fortigate-log" class="menu-link menu-link-small">Log & izleme</a>
+
+        <div class="menu-section-title">Windows Server</div>
+        <a href="#windows-lab" class="menu-link">Lab ortamı</a>
+        <a href="#windows-ad" class="menu-link menu-link-small">AD DS + DNS + DHCP</a>
+
+        <div class="menu-section-title">VMware & Sanallaştırma</div>
+        <a href="#vmware" class="menu-link">Snapshot & backup</a>
+
+        <div class="menu-section-title">Wi-Fi & Ruckus</div>
+        <a href="#wifi" class="menu-link">WLAN tasarımı</a>
+
+        <div class="menu-section-title">Monitoring</div>
+        <a href="#monitoring" class="menu-link">Zabbix & alarm kültürü</a>
+
+        <div class="menu-section-title">Video İçerikler</div>
+        <a href="#videolar" class="menu-link">Tüm videolar</a>
+    </aside>
+
+    <!-- ORTA İÇERİK -->
+    <main class="content">
+        <!-- GİRİŞ -->
+        <section id="giris" class="section">
+            <h2 class="section-heading">Bu sitenin amacı ne?</h2>
+            <p class="section-sub">
+                Komut ezberletmek değil, işin mantığını göstermek.
             </p>
-            <p class="muted">
-                Detaylı özgeçmişime PDF olarak buradan ulaşabilirsiniz:
+            <p class="paragraph">
+                Burada bulacağınız her içerik, gerçek sahadan gelen tecrübeye dayalıdır. Firewall, network,
+                Windows Server, sanallaştırma ve monitoring konularında, “hangi butona basılır?” sorusundan
+                önce, “neden o butona basılır?” sorusuna odaklanıyorum.
             </p>
-            <div class="btn-row">
-                <a href="cv.pdf" target="_blank" class="btn">CV'yi görüntüle (PDF)</a>
-                <a href="cv.pdf" target="_blank" class="btn btn-outline">CV'yi indir</a>
+            <p class="paragraph">
+                Amaç; IT alanında çalışanların sadece yapılandırma yapan kişi olmaktan çıkıp, tasarım kararı
+                verebilen, risk analizi yapabilen ve root cause bakışı geliştirebilen profesyonellere dönüşmesi.
+            </p>
+            <div class="chip-row">
+                <span class="chip">Know-how odaklı</span>
+                <span class="chip">Gerçek senaryolar</span>
+                <span class="chip">Sistem yaklaşımı</span>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- DOKÜMAN / BLOG LİSTESİ -->
-    <section id="dokumanlar">
-        <h2 class="section-title">Teknik Dökümanlar ve Know-How Notları</h2>
-        <div class="card">
-            <p class="muted">
-                Aşağıdaki başlıklar için ayrı sayfalar ve mümkün olduğunda ekran görüntülü / PDF’li
-                dokümanlar yayınlanacaktır. Her dokümanın amacı, sadece konfigürasyon göstermek değil;
-                <strong>tasarım mantığını</strong> ve <strong>troubleshooting yaklaşımını</strong> aktarmaktır.
+        <section id="felsefe" class="section">
+            <h2 class="section-heading">Know-how yaklaşımı</h2>
+            <p class="paragraph">
+                Aynı konfigürasyon, iki farklı kişinin elinde iki farklı etki yaratabilir. Farkı yaratan şey
+                “hangi komutu bildiği” değil, <strong>o komutun sistemde neyi değiştirdiğini anlayabilmesidir</strong>.
             </p>
-            <ul>
-                <li><strong>FortiGate Temel Kurulum</strong> – İlk kurulum, arayüzler, internet çıkışı, güvenli varsayılanlar</li>
-                <li><strong>FortiGate Üzerinde SSL-VPN</strong> – Uzak kullanıcılar için güvenli erişim ve policy tasarımı</li>
-                <li><strong>Windows Server 2025 Lab</strong> – AD DS, DNS, DHCP, GPO ile uçtan uca senaryo</li>
-                <li><strong>Ruckus SmartZone ile Wi-Fi Tasarımı</strong> – SSID, VLAN, misafir ağ ve güvenlik katmanları</li>
-                <li><strong>VMware Üzerinde Yedekleme Yaklaşımı</strong> – Snapshot ne zaman, backup ne zaman?</li>
-                <li><strong>Zabbix ile İzleme ve Alarm Kültürü</strong> – Sadece “up/down” değil, anlamlı eşikler ve aksiyonlar</li>
+            <p class="paragraph-muted">
+                Bu sitede, her teknik başlık altında mümkün olduğunca şu üç soruya cevap arıyorum:
+            </p>
+            <ul class="paragraph">
+                <li>Bu yapılandırmanın amacı ne?</li>
+                <li>Bu tasarım hangi riski çözüyor, hangisini bırakıyor?</li>
+                <li>Bir şey bozulduğunda, nereden ve nasıl bakmak gerekir?</li>
             </ul>
-            <div class="tag-list">
-                <span class="tag">FortiGate 70F</span>
-                <span class="tag">SSL-VPN</span>
-                <span class="tag">Windows Server 2025</span>
-                <span class="tag">Active Directory</span>
-                <span class="tag">VMware</span>
-                <span class="tag">Ruckus SmartZone</span>
-                <span class="tag">Zabbix Monitoring</span>
+        </section>
+
+        <!-- FORTIGATE -->
+        <section id="fortigate-temel" class="section">
+            <h2 class="section-heading">FortiGate Temel Kurulum</h2>
+            <p class="section-sub">İlk kurulum, arayüzler, internet çıkışı, güvenli varsayılanlar.</p>
+            <p class="paragraph">
+                Yeni bir FortiGate cihazını devreye alırken, amacımız sadece “internete çıkmak” değildir.
+                Amaç; <strong>segmentasyonu doğru yapmak</strong>, yönetim arayüzünü korumak ve ileride
+                eklenecek VPN, misafir ağı, logging gibi bileşenlere sağlam bir temel hazırlamaktır.
+            </p>
+
+            <div class="video-block">
+                <div class="video-title">Video · FortiGate ilk kurulum (örnek)</div>
+                <div class="video-frame">
+                    <!-- Buraya gerçek video linkini koyabilirsin -->
+                    <iframe src="https://www.youtube.com/embed/XXXXXXXXXXX"
+                            title="FortiGate Temel Kurulum Videosu"
+                            allowfullscreen></iframe>
+                </div>
+                <p class="paragraph-muted">
+                    Yukarıdaki iframe içindeki <code>XXXXXXXXXXX</code> kısmını kendi YouTube video ID’n ile
+                    değiştirebilirsin.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <!-- İLETİŞİM -->
-    <section id="iletisim">
-        <h2 class="section-title">İletişim</h2>
-        <div class="card">
-            <p class="muted">
-                İş fırsatları, projeler veya teknik konularla ilgili görüşmek isterseniz:
-            </p>
-            <p>
-                E-posta:
-                <strong>buraya e-posta adresiniz gelecek</strong><br>
-                LinkedIn:
-                <strong>buraya LinkedIn profil linkiniz gelecek</strong>
-            </p>
-            <p class="muted">
-                (Bu alanları hazır olduğunuzda gerçek bilgilerle güncelleyebilirsiniz.)
-            </p>
-        </div>
-    </section>
+            <div class="note">
+                Not: Bu bölüm ileride adım adım ekran görüntülü rehber ve PDF olarak da yayınlanacaktır
+                (interface planı, adresleme, admin policy, basic logging vb.).
+            </div>
+        </section>
 
-    <footer>
-        © <span id="yil"></span> Mehmet Demirel – Know-How, CV & Teknik Blog
-    </footer>
-</main>
+        <section id="fortigate-ssl" class="section">
+            <h2 class="section-heading">FortiGate Üzerinde SSL-VPN</h2>
+            <p class="section-sub">Uzak kullanıcı erişimi için mantıklı ve güvenli bir model.</p>
+            <p class="paragraph">
+                SSL-VPN kurarken yapılan en büyük hata, “herkese her yere” erişim verilmesidir. Burada,
+                kullanıcı gruplarına göre segmentasyon, rol bazlı erişim ve log tarafında takip edilebilirlik
+                üzerine bir model kurmaktan bahsediyorum.
+            </p>
+        </section>
+
+        <!-- WINDOWS -->
+        <section id="windows-lab" class="section">
+            <h2 class="section-heading">Windows Server Lab Ortamı</h2>
+            <p class="section-sub">AD DS, DNS, DHCP, GPO ve RDS’i bir arada test edebileceğin bir lab.</p>
+            <p class="paragraph">
+                Lab; hata yapmanın serbest olduğu yerdir. Gerçek hayatta dokunmaktan çekindiğin ayarları,
+                burada defalarca bozup düzeltebilirsin. Bu sitede paylaştığım lab senaryoları, özellikle
+                “ilk kez kuran” ve “mantığını oturtmak isteyen” kişiler için tasarlanmıştır.
+            </p>
+        </section>
+
+        <!-- VMWARE -->
+        <section id="vmware" class="section">
+            <h2 class="section-heading">VMware · Snapshot mı, Backup mı?</h2>
+            <p class="section-sub">İyi niyetle kullanılan snapshot’lar, yanlış senaryoda risk kaynağıdır.</p>
+            <p class="paragraph">
+                Sanallaştırma tarafında en sık gördüğüm hata, snapshot’ın “yedek” sanılması. Snapshot;
+                kısa süreli geri dönüş noktasıdır. Gerçek backup; farklı storage’ta, tutarlı ve geri dönüşü
+                test edilmiş yedektir. Burada bu ayrımı senaryolar üzerinden anlatacağım.
+            </p>
+        </section>
+
+        <!-- WIFI / RUCKUS -->
+        <section id="wifi" class="section">
+            <h2 class="section-heading">Wi-Fi & Ruckus · WLAN Tasarımı</h2>
+            <p class="section-sub">SSID sayısı, VLAN ayrımı, misafir ağı ve loglama.</p>
+            <p class="paragraph">
+                Kablosuz ağ tasarımı sadece “çekiyor mu, çekmiyor mu?” sorusundan ibaret değildir.
+                Ruckus gibi controller tabanlı yapılarda; SSID/VLAN tasarımı, client yoğunluğu, roaming
+                davranışı ve misafir ağının geri plandaki firewall kuralları önemlidir.
+            </p>
+        </section>
+
+        <!-- MONITORING -->
+        <section id="monitoring" class="section">
+            <h2 class="section-heading">Monitoring · Zabbix & Alarm Kültürü</h2>
+            <p class="section-sub">Alarmlar gürültü üretmek için değil, aksiyon almak için vardır.</p>
+            <p class="paragraph">
+                İzleme sistemi kurarken hedef “her şeyi izleyelim” olmamalı. Hedef:
+                <strong>önemli olanı anlamlı biçimde izleyelim</strong> olmalı. Zabbix tarafında eşik
+                tanımları, ACK süreçleri ve eskalasyon mantığını bu bakış açısıyla ele alıyorum.
+            </p>
+        </section>
+
+        <!-- VİDEOLAR GENEL -->
+        <section id="videolar" class="section">
+            <h2 class="section-heading">Video İçerikler</h2>
+            <p class="section-sub">Lab anlatımları, kurulum adımları ve know-how yorumları.</p>
+            <p class="paragraph">
+                Bu bölümde FortiGate, Windows Server, VMware, Ruckus ve monitoring konularında kısa ve
+                odaklı videolar yer alacak. Her videonun amacı; bir konuyu sonuna kadar ezberletmekten
+                çok, mantığını göstermek ve seni kendi lab’ını kurmaya teşvik etmek.
+            </p>
+
+            <div class="video-block">
+                <div class="video-title">Örnek video alanı</div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/YYYYYYYYYYY"
+                            title="Örnek IT Know-How Videosu"
+                            allowfullscreen></iframe>
+                </div>
+                <p class="paragraph-muted">
+                    İkinci bir videoyu eklemek için aynı bloğu kopyalayabilir, sadece
+                    <code>src</code> içindeki ID’yi değiştirebilirsin.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- SAĞ PROFİL -->
+    <aside class="sidebar-right">
+        <div class="profile-name">Mehmet Demirel</div>
+        <div class="profile-title">Network & Sistem Uzmanı</div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">Title</span><br>
+            <span class="profile-value">Firewall · Network · Windows Server · VMware</span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">Telefon</span><br>
+            <span class="profile-value">+90 (5xx) xxx xx xx</span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">E-posta</span><br>
+            <span class="profile-value">me@example.com</span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">Lokasyon</span><br>
+            <span class="profile-value">Türkiye</span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-line">
+            <span class="profile-label">LinkedIn</span><br>
+            <span class="profile-value">
+                <a href="#" target="_blank">linkedin.com/in/...</a>
+            </span>
+        </div>
+
+        <div class="profile-line">
+            <span class="profile-label">GitHub</span><br>
+            <span class="profile-value">
+                <a href="https://github.com/mehmetdemirel86" target="_blank">github.com/mehmetdemirel86</a>
+            </span>
+        </div>
+
+        <div class="profile-separator"></div>
+
+        <div class="profile-tags">
+            <span class="profile-tag">FortiGate 70F</span>
+            <span class="profile-tag">Windows Server 2025</span>
+            <span class="profile-tag">VMware</span>
+            <span class="profile-tag">Ruckus</span>
+            <span class="profile-tag">Zabbix</span>
+        </div>
+    </aside>
+</div>
+
+<footer>
+    © <span id="yil"></span> Mehmet Demirel – IT Know-How, Yazılar & Videolar
+</footer>
 
 <script>
     document.getElementById("yil").textContent = new Date().getFullYear();
