@@ -1,21 +1,206 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Mehmet Demirel - Portfolio</title>
+    <title>Mehmet Demirel - CV & Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: #f9fafb;
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+
+        .nav-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: #e5e7eb;
+            margin-left: 16px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            margin: 4px 0;
+        }
+
+        .tagline {
+            color: #4b5563;
+            font-size: 15px;
+        }
+
+        h2 {
+            margin-top: 32px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 4px;
+            font-size: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin-top: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .small {
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                margin-left: 0;
+                margin-right: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Merhaba! Ben Mehmet Demirel</h1>
-    <p>Bu site CV, portfolio ve teknik dokümanlarımı paylaşmak için açılmıştır.</p>
+<header>
+    <nav>
+        <div class="nav-title">Mehmet Demirel</div>
+        <div>
+            <a href="#hakkimda">Hakkımda</a>
+            <a href="#cv">CV</a>
+            <a href="#projeler">Projeler</a>
+            <a href="#dokumanlar">Dökümanlar</a>
+            <a href="#iletisim">İletişim</a>
+        </div>
+    </nav>
+</header>
 
-    <h2>Yakında:</h2>
-    <ul>
-        <li>CV</li>
-        <li>Fortigate Kurulum Rehberi</li>
-        <li>Windows Server Eğitim Notları</li>
-        <li>VMware Çalışmaları</li>
-    </ul>
+<main class="container">
+    <section class="hero" id="hakkimda">
+        <h1>Merhaba, ben Mehmet Demirel</h1>
+        <p class="tagline">
+            Network & Sistem Uzmanı · Firewall (FortiGate) · Windows Server · VMware · Zabbix · Ruckus
+        </p>
+        <p class="small">
+            Bu site; CV, teknik projelerim ve “nasıl yapılır” dökümanlarımı paylaşmak için hazırlanmıştır.
+        </p>
+    </section>
 
-    <p>Site yayınlandı, yapılandırma devam ediyor...</p>
+    <section id="cv">
+        <h2>CV / Özet</h2>
+        <div class="card">
+            <p>
+                Çok lokasyonlu otel ve kurumsal yapılarda network, güvenlik duvarı, Wi-Fi ve
+                Windows Server altyapılarının kurulumu, işletimi ve izlenmesi alanlarında çalışıyorum.
+            </p>
+            <p class="small">
+                Detaylı CV dosyanı buraya ekleyeceğiz (PDF linki).
+            </p>
+        </div>
+    </section>
+
+    <section id="projeler">
+        <h2>Öne Çıkan Alanlar</h2>
+        <div class="card">
+            <ul>
+                <li>FortiGate 70F: VLAN, VPN, SSL-VPN, IPsec, policy ve log analizi</li>
+                <li>Windows Server 2019/2025: AD DS, DNS, DHCP, GPO, RDS lab çalışmaları</li>
+                <li>VMware: sanallaştırma, kaynak yönetimi, temel backup senaryoları</li>
+                <li>Wi-Fi: Ruckus Virtual SmartZone, AP yönetimi, misafir ağı, VLAN tasarımı</li>
+                <li>Monitoring: Zabbix ile sistem ve ağ izleme, alarm & ACK süreçleri</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="dokumanlar">
+        <h2>Teknik Dökümanlar (Yakında)</h2>
+        <div class="card">
+            <ul>
+                <li>FortiGate Kurulum Rehberi (Temel)</li>
+                <li>FortiGate Üzerinde SSL-VPN ile Uzaktan Erişim</li>
+                <li>Windows Server 2025 Lab Ortamı Kurulumu</li>
+                <li>Ruckus SmartZone ile Kablosuz Ağ Yönetimi</li>
+                <li>VMware Üzerinde Full Backup Senaryosu</li>
+            </ul>
+            <p class="small">
+                Her biri için ayrı sayfa ve PDF linkleri ekleyeceğiz.
+            </p>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <h2>İletişim</h2>
+        <div class="card">
+            <p class="small">
+                LinkedIn, e-posta ve diğer bilgileri buraya ekleyebiliriz. Şimdilik taslak:
+            </p>
+            <p>
+                E-posta: <strong>buraya e-posta gelecek</strong><br>
+                LinkedIn: <strong>profil linkin buraya gelecek</strong>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        © <span id="yil"></span> Mehmet Demirel – Kişisel CV & Teknik Blog
+    </footer>
+</main>
+
+<script>
+    document.getElementById("yil").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
